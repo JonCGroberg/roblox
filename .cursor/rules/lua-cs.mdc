@@ -1,0 +1,9 @@
+---
+description: Lua Roblox best practices
+globs:
+alwaysApply: false
+---
+- All variables and functions must be declared with `local`.
+- Modules must follow the `return table` pattern.
+- Lines must not exceed 80 characters.
+- No use of undeclared globals (strict mode required on each file).
