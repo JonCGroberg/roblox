@@ -7,3 +7,7 @@ alwaysApply: false
 - Modules must follow the `return table` pattern.
 - Lines must not exceed 80 characters.
 - No use of undeclared globals (strict mode required on each file).
+- Use Single-Script Architecture with ModuleScripts for each system
+- Pass shared tables (Shared/Modules) via Init functions to decouple dependencies
+- Follow strict module pattern with local declarations and return tables
+- Maintain clear separation between client and server modules

@@ -1,0 +1,135 @@
+---
+description: architecture for creating, adding, or deleting files
+globs:
+alwaysApply: false
+---
+follow this architecture
+
+# Roblox Tycoon Game - Technical Architecture
+
+## 1. Service Architecture
+
+### Core Services
+- **GameService**: Main game loop, initialization, and state management
+- **EconomyService**: Handles currency, transactions, and market pricing
+- **FacilityService**: Manages facility placement, upgrades, and state
+- **ProductionService**: Handles resource processing and buffer management
+- **DeliveryService**: Manages delivery bots and routing
+- **NetworkService**: Handles player interactions and shared world state
+
+### Support Services
+- **DataService**: Persistence and data management
+- **UIService**: Centralized UI management
+- **AnalyticsService**: Game metrics and performance tracking
+
+## 2. Module Structure
+
+```
+src/
+├── shared/
+│   ├── Types.luau        # Type definitions
+│   ├── Constants.luau    # Game constants
+│   ├── Config.luau       # Game configuration
+│   └── Utils.luau        # Shared utilities
+│
+├── server/
+│   ├── Services/         # Server-side services
+│   │   ├── GameService.luau
+│   │   ├── EconomyService.luau
+│   │   ├── FacilityService.luau
+│   │   ├── ProductionService.luau
+│   │   ├── DeliveryService.luau
+│   │   └── NetworkService.luau
+│   │
+│   ├── Systems/          # Server-side systems
+│   │   ├── FacilitySystem.luau
+│   │   ├── ProductionSystem.luau
+│   │   ├── DeliverySystem.luau
+│   │   └── MarketSystem.luau
+│   │
+│   └── init.server.luau  # Server entry point
+│
+└── client/
+    ├── Services/         # Client-side services
+    │   ├── UIService.luau
+    │   └── InputService.luau
+    │
+    ├── Systems/          # Client-side systems
+    │   ├── FacilityUISystem.luau
+    │   ├── HUDSystem.luau
+    │   └── MinimapSystem.luau
+    │
+    └── init.client.luau  # Client entry point
+```
+
+## 3. Key Systems
+
+### Facility System
+- Facility placement and validation
+- Upgrade management
+- Buffer management (input/output)
+- Production rate calculations
+
+### Production System
+- Resource processing
+- Buffer state management
+- Production chain validation
+- Efficiency calculations
+
+### Delivery System
+- Bot spawning and management
+- Path finding and optimization
+- Delivery queue management
+- Profit calculations
+
+### Market System
+- Price calculations
+- Supply/demand tracking
+- Market transactions
+- Price history
+
+### UI System
+- Facility upgrade panels
+- HUD elements
+- Minimap
+- Resource indicators
+
+## 4. Data Flow
+
+1. **Client → Server**
+   - Facility placement requests
+   - Upgrade purchases
+   - Resource purchases
+   - Bot hiring
+
+2. **Server → Client**
+   - Facility state updates
+   - Market price updates
+   - Production progress
+   - Delivery status
+
+3. **Server → Server**
+   - Inter-facility communication
+   - Market price calculations
+   - Production chain validation
+
+## 5. Performance Considerations
+
+### Optimization Strategies
+- Spatial partitioning for facility queries
+- Cached path finding for delivery bots
+- Batch updates for UI elements
+- Instance pooling for common objects
+
+### Memory Management
+- Instance limits per region
+- Mesh merging for static elements
+- Texture atlasing
+- Instance cleanup for inactive areas
+
+## 7. Testing Strategy
+
+### Unit Tests
+- Service functionality
+- System calculations
+- Data validation
