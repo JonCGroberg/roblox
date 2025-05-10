@@ -1,5 +1,20 @@
+--!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Shared = ReplicatedStorage.Shared
-local Hello = require(Shared.Hello)
+local ServerScriptService = game:GetService("ServerScriptService")
 
-Hello()
+local Shared = ReplicatedStorage.Shared
+local Server = ServerScriptService.Server
+
+-- Load shared modules
+local Types = require(Shared.Types)
+local Constants = require(Shared.Constants)
+local Config = require(Shared.Config)
+local Utils = require(Shared.Utils)
+
+-- Initialize services
+local function init()
+	-- TODO: Initialize services here
+end
+
+-- Start the game
+init()

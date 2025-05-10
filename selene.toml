@@ -1,1 +1,3 @@
 std = "roblox"
+lint = true
+ignore = ["**/node_modules/**"]

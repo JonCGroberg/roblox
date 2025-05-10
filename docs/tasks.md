@@ -3,21 +3,21 @@
 ## Phase 1: Core Infrastructure
 
 ### 1. Project Setup
-- [ ] Initialize project structure
-  - [ ] Create src/shared directory
-  - [ ] Create src/server directory
-  - [ ] Create src/client directory
-  - [ ] Set up default.project.json
-- [ ] Set up shared modules
-  - [ ] Create Types.luau with base type definitions
-  - [ ] Create Constants.luau with game constants
-  - [ ] Create Config.luau with game configuration
-  - [ ] Create Utils.luau with helper functions
-- [ ] Configure development environment
-  - [ ] Set up selene.toml with Roblox std
-  - [ ] Configure strict mode in all modules
-  - [ ] Set up linting rules
-  - [ ] Configure editor settings
+- [x] Initialize project structure
+  - [x] Create src/shared directory
+  - [x] Create src/server directory
+  - [x] Create src/client directory
+  - [x] Set up default.project.json
+- [x] Set up shared modules
+  - [x] Create Types.luau with base type definitions
+  - [x] Create Constants.luau with game constants
+  - [x] Create Config.luau with game configuration
+  - [x] Create Utils.luau with helper functions
+- [x] Configure development environment
+  - [x] Set up selene.toml with Roblox std
+  - [x] Configure strict mode in all modules
+  - [x] Set up linting rules
+  - [x] Configure editor settings
 - [ ] Set up testing framework
   - [ ] Install test framework
   - [ ] Create test directory structure
