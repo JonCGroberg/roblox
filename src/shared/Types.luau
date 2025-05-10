@@ -1,4 +1,6 @@
 --!strict
+local Types = {}
+
 export type Resource = {
 	id: string,
 	name: string,
@@ -27,4 +29,8 @@ export type Bot = {
 	state: "idle" | "moving" | "loading" | "unloading",
 }
 
-return nil
+Types.Resource = Resource
+Types.Facility = Facility
+Types.Bot = Bot
+
+return Types

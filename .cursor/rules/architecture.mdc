@@ -3,11 +3,17 @@ description: architecture for creating, adding, or deleting files
 globs:
 alwaysApply: false
 ---
-follow this architecture
-
 # Roblox Tycoon Game - Technical Architecture
 
-## 1. Service Architecture
+## 1. Project Structure
+- All code must be in the `src` directory
+- Use Rojo for project management
+- Follow Rojo's recommended workflows for development
+- Maintain clear separation between client and server code
+- Use version control (Git) for code management
+- Follow Rojo's recommended workflows for team development
+
+## 2. Service Architecture
 
 ### Core Services
 - **GameService**: Main game loop, initialization, and state management
@@ -22,18 +28,18 @@ follow this architecture
 - **UIService**: Centralized UI management
 - **AnalyticsService**: Game metrics and performance tracking
 
-## 2. Module Structure
+## 3. Module Structure
 
 ```
 src/
-├── shared/
-│   ├── Types.luau        # Type definitions
-│   ├── Constants.luau    # Game constants
-│   ├── Config.luau       # Game configuration
-│   └── Utils.luau        # Shared utilities
+├── shared/              # Shared between client and server
+│   ├── Types.luau      # Type definitions
+│   ├── Constants.luau  # Game constants
+│   ├── Config.luau     # Game configuration
+│   └── Utils.luau      # Shared utilities
 │
-├── server/
-│   ├── Services/         # Server-side services
+├── server/             # Server-side code
+│   ├── Services/       # Server-side services
 │   │   ├── GameService.luau
 │   │   ├── EconomyService.luau
 │   │   ├── FacilityService.luau
@@ -41,7 +47,7 @@ src/
 │   │   ├── DeliveryService.luau
 │   │   └── NetworkService.luau
 │   │
-│   ├── Systems/          # Server-side systems
+│   ├── Systems/        # Server-side systems
 │   │   ├── FacilitySystem.luau
 │   │   ├── ProductionSystem.luau
 │   │   ├── DeliverySystem.luau
@@ -49,12 +55,12 @@ src/
 │   │
 │   └── init.server.luau  # Server entry point
 │
-└── client/
-    ├── Services/         # Client-side services
+└── client/            # Client-side code
+    ├── Services/      # Client-side services
     │   ├── UIService.luau
     │   └── InputService.luau
     │
-    ├── Systems/          # Client-side systems
+    ├── Systems/       # Client-side systems
     │   ├── FacilityUISystem.luau
     │   ├── HUDSystem.luau
     │   └── MinimapSystem.luau
@@ -62,7 +68,7 @@ src/
     └── init.client.luau  # Client entry point
 ```
 
-## 3. Key Systems
+## 4. Key Systems
 
 ### Facility System
 - Facility placement and validation
@@ -94,7 +100,7 @@ src/
 - Minimap
 - Resource indicators
 
-## 4. Data Flow
+## 5. Data Flow
 
 1. **Client → Server**
    - Facility placement requests
@@ -113,7 +119,7 @@ src/
    - Market price calculations
    - Production chain validation
 
-## 5. Performance Considerations
+## 6. Performance Considerations
 
 ### Optimization Strategies
 - Spatial partitioning for facility queries
@@ -133,3 +139,23 @@ src/
 - Service functionality
 - System calculations
 - Data validation
+
+## 8. Development Workflow
+
+### Version Control
+- Use Git for version control
+- Follow Git flow branching strategy
+- Use pull requests for code review
+- Maintain clean commit history
+
+### Code Review
+- Follow style guide in lua-cs.mdc
+- Ensure proper error handling
+- Verify type safety
+- Check performance implications
+
+### Documentation
+- Document public APIs
+- Keep README up to date
+- Document architectural decisions
+- Maintain changelog

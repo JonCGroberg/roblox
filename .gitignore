@@ -4,3 +4,38 @@
 # Roblox Studio lock files
 /*.rbxlx.lock
 /*.rbxl.lock
+
+# Wally packages
+Packages/
+*.lock.json
+
+# Rojo
+*.rbxlx
+*.rbxl
+*.rbxm
+*.rbxmx
+
+# Roblox Studio
+*.rbxlx.backup
+*.rbxl.backup
+*.rbxm.backup
+*.rbxmx.backup
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build output
+out/
+dist/

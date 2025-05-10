@@ -1,6 +1,7 @@
+--!strict
 local Hello = {}
 
-function Hello.say(): ()
+function Hello.say()
 	print("Hello, world!")
 end
 
