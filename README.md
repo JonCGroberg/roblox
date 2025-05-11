@@ -4,19 +4,6 @@
 [![Rojo](https://img.shields.io/badge/Rojo-7.5.1-blue)](https://github.com/rojo-rbx/rojo)
 [![Wally](https://img.shields.io/badge/Wally-0.3.2-orange)](https://github.com/UpliftGames/wally)
 
-## Table of Contents
-
-1. [Prerequisites](#⚙️-prerequisites)
-2. [Installation](#📥-installation)
-3. [Development](#🚀-development)
-   * [Running the Project](#running-the-project)
-   * [Open in Roblox Studio](#open-in-roblox-studio)
-4. [Dependencies](#dependencies)
-5. [Contributing](#contributing)
-6. [Resources](#resources)
-7. [License](#license)
-
-
 ## ⚙️ Prerequisites
 
 Make sure you have:
@@ -24,7 +11,7 @@ Make sure you have:
 * [Roblox Studio](https://www.roblox.com/create)
 * [Aftman](https://github.com/LPGhatguy/aftman)
 
-## 📥 Installation
+## Installation
 
 1. **Clone the repository**
 
@@ -103,6 +90,6 @@ Open `roblox.rbxlx`; Rojo will auto-sync your files live from VsCode to Roblox S
 * [Rojo Docs](https://rojo.space/docs)
 * [Wally](https://github.com/UpliftGames/wally)
 
-## 📝 License
+## License
 
 MIT License. See [LICENSE](LICENSE).
