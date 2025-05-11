@@ -1,100 +1,108 @@
-# Roblox Project
+# Island Tycoon
 
-[![Roblox](https://img.shields.io/badge/Roblox-00A2FF?style=flat&logo=roblox&logoColor=white)](https://www.roblox.com)
+[![Roblox](https://img.shields.io/badge/Roblox-00A2FF?style=flat\&logo=roblox\&logoColor=white)](https://www.roblox.com)
 [![Rojo](https://img.shields.io/badge/Rojo-7.5.1-blue)](https://github.com/rojo-rbx/rojo)
 [![Wally](https://img.shields.io/badge/Wally-0.3.2-orange)](https://github.com/UpliftGames/wally)
 
-A Roblox project using modern development tools and practices.
+## Table of Contents
 
-## Prerequisites
+1. [Prerequisites](#⚙️-prerequisites)
+2. [Installation](#📥-installation)
+3. [Development](#🚀-development)
+   * [Running the Project](#running-the-project)
+   * [Open in Roblox Studio](#open-in-roblox-studio)
+4. [Dependencies](#dependencies)
+5. [Contributing](#contributing)
+6. [Resources](#resources)
+7. [License](#license)
 
-Before you begin, ensure you have the following installed:
 
-- [Roblox Studio](https://www.roblox.com/create)
-- [Rust](https://rustup.rs/) (for Selene)
-- [Aftman](https://github.com/LPGhatguy/aftman) (Package Manager)
+## ⚙️ Prerequisites
 
-## Installation
+Make sure you have:
 
-1. **Install Aftman** (if not already installed)
-   Follow the installation instructions at [github.com/LPGhatguy/aftman](https://github.com/LPGhatguy/aftman)
+* [Roblox Studio](https://www.roblox.com/create)
+* [Aftman](https://github.com/LPGhatguy/aftman)
 
-2. **Setup Project**
+## 📥 Installation
+
+1. **Clone the repository**
+
    ```bash
-   # Clone the repository
    git clone https://github.com/JonCGroberg/roblox.git
+   ```
+2. **Enter the project directory**
+
+   ```bash
    cd roblox
+   ```
+3. **Install development tools**
 
-   # Install development tools (Wally, StyLua, etc.)
+   ```bash
    aftman install
+   ```
+4. **Install dependencies**
 
-   # Install dependencies
+   ```bash
    wally install
-
-   # Install Selene (Lua Linter) - Optional
-   cargo install selene
    ```
 
-## Development
+## 🚀 Development
 
 ### Running the Project
 
-1. **Build and Run**
+You have two ways to develop and sync your project:
+
+#### VS Code Extension (Recommended)
+   - Install the Rojo VS Code extension for live syncing between your code editor and Roblox Studio.
+
+#### Rojo CLI
+
+ 1. **Build the place file**
+  ```bash
+  rojo build -o roblox.rbxlx
+  ```
+ 2. **Start the Rojo server**
+
+  ```bash
+  rojo serve
+  ```
+
+### Open in Roblox Studio
+
+Open `roblox.rbxlx`; Rojo will auto-sync your files live from VsCode to Roblox Studio.
+
+
+## 🔗 Dependencies
+
+* **Wally** – Lua package manager
+* **Rojo** – Build & sync tool
+* **Aftman** – Package manager
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a feature branch
+
    ```bash
-   # Build the place file
-   rojo build -o "roblox.rbxlx"
+   git checkout -b feature/name
+   ```
+3. Commit changes
 
-   # Start the Rojo server
-   rojo serve
+   ```bash
+   git commit -m "Add feature"
+   ```
+4. Push & open PR
+
+   ```bash
+   git push origin feature/name
    ```
 
-2. **Open in Roblox Studio**
-   - Open `roblox.rbxlx` in Roblox Studio
-   - The Rojo plugin will automatically sync your local files
+## 📚 Resources
 
-### Testing
+* [Rojo Docs](https://rojo.space/docs)
+* [Wally](https://github.com/UpliftGames/wally)
 
-1. **Enable Testing**
-   Add to your Roblox Studio `ClientAppSettings.json`:
-   ```json
-   {
-       "FFlagEnableLoadModule": true
-   }
-   ```
+## 📝 License
 
-2. **Configure Jest**
-   Create `jest.config.lua` in your source directory:
-   ```lua
-   return {
-       testMatch = { "**/*.spec" }
-   }
-   ```
-
-3. **Run Tests**
-   Use the provided test runner script.
-
-## Dependencies
-
-This project uses [Wally](https://github.com/UpliftGames/wally) for package management:
-
-- Jest (v3.10.0)
-- JestGlobals (v3.10.0)
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Resources
-
-- [Rojo Documentation](https://rojo.space/docs)
-- [Jest Lua Documentation](https://jsdotlua.github.io/jest-lua/)
-- [Wally Documentation](https://github.com/UpliftGames/wally)
-- [Selene Documentation](https://kampfkarren.github.io/selene/)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License. See [LICENSE](LICENSE).

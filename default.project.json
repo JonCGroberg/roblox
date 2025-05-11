@@ -2,6 +2,9 @@
   "name": "roblox",
   "tree": {
     "$className": "DataModel",
+    "Packages": {
+      "$path": "packages"
+    },
     "ReplicatedStorage": {
       "Shared": {
         "$path": "src/shared"

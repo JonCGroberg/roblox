@@ -1,6 +1,4 @@
 --!strict
-local Types = {}
-
 export type Resource = {
 	id: string,
 	name: string,
@@ -29,8 +27,5 @@ export type Bot = {
 	state: "idle" | "moving" | "loading" | "unloading",
 }
 
-Types.Resource = Resource
-Types.Facility = Facility
-Types.Bot = Bot
-
-return Types
+-- types are still exposed even with nil due to export
+return nil

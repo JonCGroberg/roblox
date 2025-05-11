@@ -1,7 +1,7 @@
 --!strict
+-- Type definitions for module constants
 local Constants = {}
 
--- Facility Constants
 Constants.FACILITY = {
 	MAX_INPUT_BUFFER = 1000,
 	MAX_OUTPUT_BUFFER = 1000,

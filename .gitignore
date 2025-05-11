@@ -1,9 +1,11 @@
-# Project place file
-/roblox.rbxlx
-
 # Roblox Studio lock files
 /*.rbxlx.lock
 /*.rbxl.lock
+
+# Roblox Studio place files
+*.rbxl
+
+sourcemap.json
 
 # Wally packages
 Packages/

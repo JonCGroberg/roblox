@@ -12,16 +12,16 @@ end
 
 -- Table Utilities
 function Utils.deepCopy<T>(original: T): T
-	local copy
-	if type(original) == "table" then
-		copy = {}
-		for k, v in pairs(original) do
-			copy[k] = Utils.deepCopy(v)
-		end
-	else
-		copy = original
+	if type(original) ~= "table" then
+		return original
 	end
-	return copy
+
+	local copy:any = {}
+	for key, value in pairs(original::{[any]:any}) do
+		copy[key] = Utils.deepCopy(value)
+	end
+
+	return copy :: T
 end
 
 -- Vector Utilities
