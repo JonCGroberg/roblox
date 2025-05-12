@@ -1,0 +1,104 @@
+---
+description: Lua style
+globs:
+alwaysApply: false
+---
+# Core Requirements
+- Strict mode required on each file (`--!strict`)
+- All variables and functions must be declared with `local`
+- Lines must not exceed 80 characters
+- Indent with tabs (not spaces)
+- No vertical alignment in code
+- Add newline at end of file
+- No trailing whitespace
+
+# Development Environment
+- Use VS Code with recommended extensions:
+  - luau-lsp for language support
+  - StyLua for code formatting
+  - Selene for static analysis
+- Follow Selene's static analysis rules
+- Use StyLua for consistent code formatting
+
+# Project Structure
+- Follow the architecture defined in `architecture.mdc` for:
+  - Service organization (shared services in `replicatedstorage/Services`)
+  - Module placement (UI in `replicatedstorage/Screens` and `replicatedstorage/Components`)
+  - System design (entry points in `serverscriptservice/server` and `starterplayerscripts`)
+  - Data flow patterns
+- This file focuses on code style, while `architecture.mdc` defines project structure
+
+# File Structure
+- Files should follow this order:
+  1. Optional block comment explaining file purpose (no file name/author/date)
+  2. Services used by the file (GetService)
+  3. Module imports (require)
+  4. Module-level constants
+  5. Module-level variables and functions
+  6. The object the module returns
+  7. Return statement
+
+# Module Pattern
+- Use Single-Script Architecture with ModuleScripts for each system
+- Modules must follow the `return table` pattern
+- Maintain clear separation between client and server modules
+- Follow strict module pattern with local declarations and return tables
+- Pass shared tables (ReplicatedStorage/Modules) via Init functions to decouple dependencies
+
+# Type System
+- Use type annotations for function parameters and returns
+- Export types using `export type` for shared type definitions
+- Use type aliases for cleaner code: `type Resource = Types.Resource`
+- Combine compile-time types with runtime validation when needed
+- Use strict type inference for all scripts
+
+# Class Pattern
+- Use the One True Pattern for classes:
+  ```lua
+  local MyClass = {}
+  MyClass.__index = MyClass
+
+  function MyClass.new()
+      local self = {}
+      setmetatable(self, MyClass)
+      return self
+  end
+  ```
+- Use dot (.) for static methods
+- Use colon (:) for instance methods
+- Add `__tostring` metamethod for better debugging
+- Use double underscore prefix for quasi-private members
+
+# Error Handling
+- Use error() for programming errors
+- Use warn() for recoverable issues
+- Use pcall() for expected failures
+- Document error conditions in comments
+
+# Naming Conventions
+- Use PascalCase for types and classes
+- Use camelCase for variables and functions
+- Use UPPER_SNAKE_CASE for constants
+- Use descriptive names that indicate purpose
+
+# Comments
+- Use block comments for file-level documentation
+- Use line comments for complex logic
+- Document function parameters and return values
+- Explain why, not what (the code shows what)
+- Wrap comments to 80 columns wide
+
+# Code Style
+- Put a space before and after operators
+- Put a space after commas in tables and function calls
+- Inline opening syntax elements for blocks
+- Use one statement per line
+- Put function bodies on new lines
+- Use single empty lines to express groups
+- Avoid putting table braces on their own line
+
+# Script Types
+- Client scripts: Place in `StarterPlayerScripts` (e.g., `init.client.luau`)
+- Server scripts: Place in `ServerScriptService/server` (e.g., `init.server.luau`)
+- Module scripts: Place in `ReplicatedStorage` (shared), `ReplicatedStorage/Services`, `ReplicatedStorage/Screens`, or `ReplicatedStorage/Components`
+- UI: Place screens/components in `ReplicatedStorage/Screens` and `ReplicatedStorage/Components`
