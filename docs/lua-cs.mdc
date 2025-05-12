@@ -1,7 +1,7 @@
 ---
-description:
+description: Lua style
 globs:
-alwaysApply: true
+alwaysApply: false
 ---
 # Core Requirements
 - Strict mode required on each file (`--!strict`)
@@ -17,15 +17,14 @@ alwaysApply: true
   - luau-lsp for language support
   - StyLua for code formatting
   - Selene for static analysis
-  - roblox-ui for Rojo project visualization
 - Follow Selene's static analysis rules
 - Use StyLua for consistent code formatting
 
 # Project Structure
 - Follow the architecture defined in `architecture.mdc` for:
-  - Service organization
-  - Module placement
-  - System design
+  - Service organization (shared services in `replicatedstorage/Services`)
+  - Module placement (UI in `replicatedstorage/Screens` and `replicatedstorage/Components`)
+  - System design (entry points in `serverscriptservice/server` and `starterplayerscripts`)
   - Data flow patterns
 - This file focuses on code style, while `architecture.mdc` defines project structure
 
@@ -44,7 +43,7 @@ alwaysApply: true
 - Modules must follow the `return table` pattern
 - Maintain clear separation between client and server modules
 - Follow strict module pattern with local declarations and return tables
-- Pass shared tables (Shared/Modules) via Init functions to decouple dependencies
+- Pass shared tables (ReplicatedStorage/Modules) via Init functions to decouple dependencies
 
 # Type System
 - Use type annotations for function parameters and returns
@@ -99,10 +98,7 @@ alwaysApply: true
 - Avoid putting table braces on their own line
 
 # Script Types
-- Client scripts: Run on client, no server visibility
-- Server scripts: Run on server, no client visibility
-- Module scripts: Reusable code returning one value
-- Place scripts in appropriate locations:
-  - Client: ReplicatedStorage, StarterPlayerScripts
-  - Server: ServerScriptService
-  - Shared: ReplicatedStorage
+- Client scripts: Place in `StarterPlayerScripts` (e.g., `init.client.luau`)
+- Server scripts: Place in `ServerScriptService/server` (e.g., `init.server.luau`)
+- Module scripts: Place in `ReplicatedStorage` (shared), `ReplicatedStorage/Services`, `ReplicatedStorage/Screens`, or `ReplicatedStorage/Components`
+- UI: Place screens/components in `ReplicatedStorage/Screens` and `ReplicatedStorage/Components`

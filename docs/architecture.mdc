@@ -1,5 +1,5 @@
 ---
-description: architecture for creating, adding, or deleting files
+description:
 globs:
 alwaysApply: false
 ---
@@ -12,6 +12,34 @@ alwaysApply: false
 - Maintain clear separation between client and server code
 - Use version control (Git) for code management
 - Follow Rojo's recommended workflows for team development
+
+```
+src/
+├── replicatedstorage/         # Shared modules (types, constants, config, utils, services, UI)
+│   ├── Types.luau             # Type definitions
+│   ├── Constants.luau         # Game constants
+│   ├── Config.luau            # Game configuration
+│   ├── Utils.luau             # Shared utilities
+│   ├── Services/              # Shared services (used by both client/server)
+│   │   ├── GameService.luau
+│   │   └── UIService.luau
+│   ├── Screens/               # UI screens (e.g., MainMenu)
+│   │   └── MainMenu.luau
+│   └── Components/            # Reusable UI components
+│       └── BaseComponent.luau
+│
+├── serverscriptservice/       # Server-side code
+│   └── server/
+│       └── init.server.luau   # Server entry point
+│
+├── starterplayerscripts/      # Client-side code
+│   └── client/
+│       └── init.client.luau   # (Client-specific modules/scripts)
+```
+
+- Note: All core services (GameService, UIService) are in `replicatedstorage/Services` for shared access, but are only initialized on the appropriate side (server/client).
+- UI screens and components are in `replicatedstorage/Screens` and `replicatedstorage/Components`.
+- Entry points are in `serverscriptservice/server/init.server.luau` and `starterplayerscripts/init.client.luau`.
 
 ## 2. Service Architecture
 
@@ -32,14 +60,14 @@ alwaysApply: false
 
 ```
 src/
-├── shared/              # Shared between client and server
-│   ├── Types.luau      # Type definitions
-│   ├── Constants.luau  # Game constants
-│   ├── Config.luau     # Game configuration
-│   └── Utils.luau      # Shared utilities
+├── replicatedstorage/    # Shared between client and server
+│   ├── Types.luau       # Type definitions
+│   ├── Constants.luau   # Game constants
+│   ├── Config.luau      # Game configuration
+│   └── Utils.luau       # Shared utilities
 │
-├── server/             # Server-side code
-│   ├── Services/       # Server-side services
+├── serverscriptservice/  # Server-side code
+│   ├── Services/        # Server-side services
 │   │   ├── GameService.luau
 │   │   ├── EconomyService.luau
 │   │   ├── FacilityService.luau
@@ -47,25 +75,34 @@ src/
 │   │   ├── DeliveryService.luau
 │   │   └── NetworkService.luau
 │   │
-│   ├── Systems/        # Server-side systems
+│   ├── Systems/         # Server-side systems
 │   │   ├── FacilitySystem.luau
 │   │   ├── ProductionSystem.luau
 │   │   ├── DeliverySystem.luau
 │   │   └── MarketSystem.luau
 │   │
-│   └── init.server.luau  # Server entry point
+│   └── init.server.luau # Server entry point
 │
-└── client/            # Client-side code
-    ├── Services/      # Client-side services
-    │   ├── UIService.luau
-    │   └── InputService.luau
-    │
-    ├── Systems/       # Client-side systems
-    │   ├── FacilityUISystem.luau
-    │   ├── HUDSystem.luau
-    │   └── MinimapSystem.luau
-    │
-    └── init.client.luau  # Client entry point
+├── starterplayerscripts/ # Client-side code
+│   ├── Services/        # Client-side services
+│   │   ├── UIService.luau
+│   │   └── InputService.luau
+│   │
+│   ├── Systems/         # Client-side systems
+│   │   ├── FacilityUISystem.luau
+│   │   ├── HUDSystem.luau
+│   │   └── MinimapSystem.luau
+│   │
+│   └── init.client.luau # Client entry point
+│
+├── startergui/          # UI elements
+│   ├── Screens/        # Full-screen UI
+│   ├── Components/     # Reusable UI components
+│   └── Assets/         # UI assets and resources
+│
+└── tests/              # Test files
+    ├── unit/          # Unit tests
+    └── integration/   # Integration tests
 ```
 
 ## 4. Key Systems
@@ -139,6 +176,11 @@ src/
 - Service functionality
 - System calculations
 - Data validation
+
+### Integration Tests
+- System interactions
+- Network replication
+- UI updates
 
 ## 8. Development Workflow
 

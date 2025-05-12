@@ -2,6 +2,26 @@
 -- Type definitions for module constants
 local Constants = {}
 
+-- Game Service Constants
+Constants.GAME = {
+	INITIALIZATION_TIMEOUT = 10, -- seconds
+	DATA_STORE_NAME = "PlayerData_v1",
+	SAVE_INTERVAL = 300, -- 5 minutes
+}
+
+-- UI Service Constants
+Constants.UI = {
+	TRANSITION_TYPES = {
+		FADE = "Fade",
+		SLIDE_LEFT = "SlideLeft",
+		SLIDE_RIGHT = "SlideRight",
+		SLIDE_UP = "SlideUp",
+		SLIDE_DOWN = "SlideDown",
+	},
+	TRANSITION_DURATION = 0.3,
+}
+
+-- Facility Constants
 Constants.FACILITY = {
 	MAX_INPUT_BUFFER = 1000,
 	MAX_OUTPUT_BUFFER = 1000,
