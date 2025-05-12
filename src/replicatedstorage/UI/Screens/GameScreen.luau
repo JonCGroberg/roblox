@@ -1,7 +1,6 @@
 --!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Types = require(ReplicatedStorage.Core.Types)
-local Constants = require(ReplicatedStorage.Core.Constants)
 local BaseComponent = require(ReplicatedStorage.UI.Components.BaseComponent)
 
 local GameScreen = {}

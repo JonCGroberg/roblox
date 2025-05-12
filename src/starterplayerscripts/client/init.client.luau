@@ -1,8 +1,6 @@
 --!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
-local Types = require(ReplicatedStorage.Core.Types)
 local Constants = require(ReplicatedStorage.Core.Constants)
 
 -- Disable default Roblox UI elements
