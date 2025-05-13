@@ -172,5 +172,46 @@ export type MarketService = {
 	OnPriceUpdated: BindableEvent,
 }
 
+-- Business Types
+export type BusinessType = "factory" | "shop" | "warehouse"
+
+export type BusinessState = {
+	id: string,
+	type: BusinessType,
+	ownerId: number,
+	position: Vector3,
+	rotation: Vector3,
+	state: string, -- e.g. "idle", "active", "upgrading"
+	upgrades: { [string]: number }, -- e.g. { "capacity": 2, "speed": 1 }
+	inputBuffer: { [string]: number }?,
+	outputBuffer: { [string]: number }?,
+	lastUpdated: number,
+}
+
+export type BusinessService = {
+	Init: (self: BusinessService) -> (),
+	PlaceBusiness: (
+		self: BusinessService,
+		player: Player,
+		businessType: BusinessType,
+		position: Vector3,
+		rotation: Vector3
+	) -> boolean,
+	UpgradeBusiness: (self: BusinessService, businessId: string, upgradeType: string) -> boolean,
+	GetBusinessState: (self: BusinessService, businessId: string) -> BusinessState?,
+	GetPlayerBusinesses: (self: BusinessService, player: Player) -> { BusinessState },
+	SetBusinessState: (self: BusinessService, businessId: string, newState: string) -> boolean,
+	CanPlaceBusiness: (
+		self: BusinessService,
+		player: Player,
+		businessType: BusinessType,
+		position: Vector3,
+		rotation: Vector3
+	) -> boolean,
+	LoadPlayerBusinesses: (self: BusinessService, player: Player) -> boolean,
+	SavePlayerBusinesses: (self: BusinessService, player: Player) -> boolean,
+	-- Add more as needed
+}
+
 -- types are still exposed even with nil due to export
 return nil

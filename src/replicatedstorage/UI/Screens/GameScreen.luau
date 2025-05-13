@@ -7,7 +7,8 @@ local GameScreen = {}
 GameScreen.__index = GameScreen
 setmetatable(GameScreen, BaseComponent)
 
-function GameScreen.new(uiService: Types.UIService?): Types.Screen
+function GameScreen.new(uiService: Types.UIService?, economyService: any): Types.Screen
+	print("Creating new GameScreen...")
 	-- Create the screen instance first
 	local screenGui = Instance.new("ScreenGui")
 	screenGui.Name = "GameScreen"
@@ -16,8 +17,16 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	screenGui.Enabled = false -- Hide by default
 
 	-- Create the component with the instance
-	local self = setmetatable(BaseComponent.new("GameScreen", screenGui), GameScreen)
-	self._uiService = uiService
+	local base = BaseComponent.new("GameScreen", screenGui)
+	local self = {
+		Name = base.Name,
+		Instance = base.Instance,
+		IsVisible = base.IsVisible,
+		_events = base._events,
+		_uiService = uiService,
+		_economyService = economyService,
+	}
+	setmetatable(self, GameScreen)
 
 	-- Create main frame
 	local mainFrame = Instance.new("Frame")
@@ -25,6 +34,7 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	mainFrame.Size = UDim2.new(1, 0, 1, 0)
 	mainFrame.Parent = screenGui
 	mainFrame.BackgroundTransparency = 1
+	print("MainFrame created and parented")
 
 	-- Create top bar
 	local topBar = Instance.new("Frame")
@@ -34,6 +44,7 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	topBar.BorderSizePixel = 0
 	topBar.BackgroundTransparency = 1
 	topBar.Parent = mainFrame
+	print("TopBar created and parented")
 
 	-- Create currency display
 	local currencyDisplay = Instance.new("Frame")
@@ -43,6 +54,7 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	currencyDisplay.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 	currencyDisplay.BorderSizePixel = 0
 	currencyDisplay.Parent = topBar
+	print("CurrencyDisplay created and parented")
 
 	-- Create coins label
 	local coinsLabel = Instance.new("TextLabel")
@@ -55,6 +67,7 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	coinsLabel.TextSize = 18
 	coinsLabel.Font = Enum.Font.GothamMedium
 	coinsLabel.Parent = currencyDisplay
+	print("CoinsLabel created and parented")
 
 	-- Create gems label
 	local gemsLabel = Instance.new("TextLabel")
@@ -67,6 +80,7 @@ function GameScreen.new(uiService: Types.UIService?): Types.Screen
 	gemsLabel.TextSize = 18
 	gemsLabel.Font = Enum.Font.GothamMedium
 	gemsLabel.Parent = currencyDisplay
+	print("GemsLabel created and parented")
 
 	-- Create menu button
 	local menuButton = Instance.new("TextButton")
@@ -113,11 +127,34 @@ end
 
 -- Update currency display
 function GameScreen:UpdateCurrency(coins: number, gems: number)
-	local coinsLabel = self.Instance.MainFrame.CurrencyDisplay.CoinsLabel
-	local gemsLabel = self.Instance.MainFrame.CurrencyDisplay.GemsLabel
+	print("Updating currency display...")
+	print("self.Instance path:", self.Instance:GetFullName())
+	local mainFrame = self.Instance:FindFirstChild("MainFrame")
+	if not mainFrame then
+		warn("MainFrame missing! Children:", self.Instance:GetChildren())
+		return
+	end
+	print("MainFrame children:", mainFrame:GetChildren())
+	local topBar = mainFrame:FindFirstChild("TopBar")
+	if not topBar then
+		warn("TopBar missing! Children:", mainFrame:GetChildren())
+		return
+	end
+	local currencyDisplay = topBar:FindFirstChild("CurrencyDisplay")
+	if not currencyDisplay then
+		warn("CurrencyDisplay missing! Children:", topBar:GetChildren())
+		return
+	end
+	local coinsLabel = currencyDisplay:FindFirstChild("CoinsLabel")
+	local gemsLabel = currencyDisplay:FindFirstChild("GemsLabel")
+	if not coinsLabel or not gemsLabel then
+		warn("CoinsLabel or GemsLabel missing! Children:", currencyDisplay:GetChildren())
+		return
+	end
 
 	coinsLabel.Text = `Coins: {coins}`
 	gemsLabel.Text = `Gems: {gems}`
+	print("Currency display updated successfully")
 end
 
 -- Show facility UI
@@ -132,6 +169,13 @@ end
 function GameScreen:HideFacilityUI()
 	local container = self.Instance.MainFrame.FacilityUIContainer
 	container.Visible = false
+end
+
+function GameScreen:UpdateCurrencyFromService(economyService, player)
+	economyService = economyService or self._economyService
+	local coins = economyService:GetBalance(player, "coins")
+	local gems = economyService:GetBalance(player, "gems")
+	self:UpdateCurrency(coins, gems)
 end
 
 return GameScreen

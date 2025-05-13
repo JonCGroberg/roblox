@@ -49,90 +49,97 @@
     - [x] Component communication
 
 ### 3. Economy Foundation
-- [ ] Implement EconomyService
-  - [ ] Create currency system
-    - [ ] Currency types
-    - [ ] Balance management
-    - [ ] Transaction history
-  - [ ] Implement transaction validation
-    - [ ] Purchase validation
-    - [ ] Sale validation
-    - [ ] Transfer validation
-  - [ ] Create market price system
-    - [ ] Base price calculations
-    - [ ] Supply/demand modifiers
-    - [ ] Price history tracking
-- [ ] Create shared economy types
-  - [ ] Define resource types
-    - [ ] Basic resources
-    - [ ] Processed resources
-    - [ ] Special resources
-  - [ ] Create price structures
-    - [ ] Base prices
-    - [ ] Market modifiers
-    - [ ] Transaction fees
-  - [ ] Define transaction types
-    - [ ] Purchase transactions
-    - [ ] Sale transactions
-    - [ ] Transfer transactions
+- [x] Implement EconomyService
+  - [x] Create currency system
+    - [x] Currency types
+    - [x] Balance management
+    - [x] Transaction history
+  - [x] Implement transaction validation
+    - [x] Purchase validation
+    - [x] Sale validation
+    - [x] Transfer validation
+  - [x] Create market price system (see MarketService)
+    - [x] Base price calculations
+    - [x] Supply/demand modifiers
+    - [x] Price history tracking
+- [x] Create shared economy types (see Core/Types.luau)
+  - [x] Define resource types
+    - [x] Basic resources
+    - [x] Processed resources
+    - [x] Special resources
+  - [x] Create price structures
+    - [x] Base prices
+    - [x] Market modifiers
+    - [x] Transaction fees
+  - [x] Define transaction types
+    - [x] Purchase transactions
+    - [x] Sale transactions
+    - [x] Transfer transactions
+
+---
+
+**Note:**
+- UI and Core folders are now used for organization of screens, components, types, config, and utils.
+- MarketService implements the market price system.
+- All economy types are defined in Core/Types.luau.
 
 ## Phase 2: Facility System
 
 ### 1. Facility Core
-- [ ] Implement FacilityService
-  - [ ] Create placement system
-    - [ ] Placement validation
-    - [ ] Collision detection
-    - [ ] Grid alignment
-  - [ ] Implement state management
-    - [ ] Facility states
-    - [ ] State transitions
-    - [ ] State persistence
-  - [ ] Create upgrade system
-    - [ ] Upgrade paths
-    - [ ] Upgrade validation
-    - [ ] Upgrade effects
-- [ ] Create facility types
-  - [ ] Implement base facility class
-    - [ ] Common properties
-    - [ ] Base methods
-    - [ ] Event handling
-  - [ ] Define resource types
-    - [ ] Input resources
-    - [ ] Output resources
-    - [ ] Processing requirements
-  - [ ] Create upgrade paths
-    - [ ] Capacity upgrades
-    - [ ] Speed upgrades
-    - [ ] Efficiency upgrades
+- [x] Implement BusinessService
+  - [x] Create placement system
+    - [x] Placement validation
+    - [x] Collision detection
+    - [x] Grid alignment
+  - [x] Implement state management
+    - [x] Facility states
+    - [x] State transitions
+    - [x] State persistence
+  - [x] Create upgrade system
+    - [x] Upgrade paths
+    - [x] Upgrade validation
+    - [x] Upgrade effects
+- [x] Create facility types
+  - [x] Implement base facility class
+    - [x] Common properties
+    - [x] Base methods
+    - [x] Event handling
+  - [x] Define resource types
+    - [x] Input resources
+    - [x] Output resources
+    - [x] Processing requirements
+  - [x] Create upgrade paths
+    - [x] Capacity upgrades
+    - [x] Speed upgrades
+    - [x] Efficiency upgrades
 
 ### 2. Production System
-- [ ] Implement ProductionService
-  - [ ] Create resource processing
-    - [ ] Processing logic
-    - [ ] Resource conversion
-    - [ ] Efficiency calculations
-  - [ ] Implement buffer management
-    - [ ] Input buffer
-    - [ ] Output buffer
-    - [ ] Buffer limits
-  - [ ] Create production validation
-    - [ ] Chain validation
-    - [ ] Resource validation
-    - [ ] Capacity validation
-- [ ] Create production types
-  - [ ] Define processing recipes
-    - [ ] Input requirements
-    - [ ] Output products
-    - [ ] Processing time
-  - [ ] Implement buffer states
-    - [ ] Empty state
-    - [ ] Partial state
-    - [ ] Full state
-  - [ ] Create efficiency system
-    - [ ] Base efficiency
-    - [ ] Upgrade effects
-    - [ ] Chain bonuses
+- [x] Implement ProductionService
+  - [x] Create resource processing
+    - [x] Processing logic
+    - [x] Resource conversion
+    - [x] Efficiency calculations
+  - [x] Implement buffer management
+    - [x] Input buffer
+    - [x] Output buffer
+    - [x] Buffer limits
+  - [x] Create production validation
+    - [x] Chain validation
+    - [x] Resource validation
+    - [x] Capacity validation
+- [x] Create production types
+  - [x] Define processing recipes
+    - [x] Input requirements
+    - [x] Output products
+    - [x] Processing time
+  - [x] Implement buffer states
+    - [x] Empty state
+    - [x] Partial state
+    - [x] Full state
+  - [x] Create efficiency system
+    - [x] Base efficiency
+    - [x] Upgrade effects
+    - [x] Chain bonuses
 
 ### 3. Facility UI
 - [ ] Implement FacilityUISystem
@@ -395,3 +402,11 @@
   - Type system limitations in Luau causing linter errors
   - Need to implement proper type casting for self references
   - Instance property access needs type refinement
+
+## Additional Completed Tasks
+
+- [x] Implement dependency injection for all services and UI modules
+- [x] Refactor UI and service modules for strict mode and linter compliance
+- [x] Add defensive error handling and debug logging to UI update code
+- [x] Ensure event-driven updates for all UI elements (currency, upgrades, etc.)
+- [x] Refactor GameScreen and FacilityUI for maintainability and extensibility

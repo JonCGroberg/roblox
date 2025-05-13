@@ -177,4 +177,10 @@ Config.RECIPES = {
 	},
 }
 
+Config.BUSINESS_UPGRADES = {
+	capacity = { cost = 500, maxLevel = 5 },
+	speed = { cost = 750, maxLevel = 3 },
+	efficiency = { cost = 1000, maxLevel = 4 },
+}
+
 return Config

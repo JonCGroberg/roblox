@@ -64,18 +64,6 @@ function MainMenu.new(uiService: Types.UIService?): Types.Screen
 	settingsButton.Font = Enum.Font.GothamMedium
 	settingsButton.Parent = mainFrame
 
-	-- Create quit button
-	local quitButton = Instance.new("TextButton")
-	quitButton.Name = "QuitButton"
-	quitButton.Size = UDim2.new(0, 200, 0, 50)
-	quitButton.Position = UDim2.new(0.5, -100, 0.5, 140)
-	quitButton.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
-	quitButton.Text = "Quit"
-	quitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	quitButton.TextSize = 24
-	quitButton.Font = Enum.Font.GothamMedium
-	quitButton.Parent = mainFrame
-
 	-- Add button hover effects
 	local function setupButtonHover(button: TextButton, hoverColor: Color3)
 		local originalColor = button.BackgroundColor3
@@ -89,7 +77,6 @@ function MainMenu.new(uiService: Types.UIService?): Types.Screen
 
 	setupButtonHover(playButton, Color3.fromRGB(0, 100, 180))
 	setupButtonHover(settingsButton, Color3.fromRGB(80, 80, 80))
-	setupButtonHover(quitButton, Color3.fromRGB(180, 40, 40))
 
 	-- Connect button events
 	playButton.MouseButton1Click:Connect(function()
@@ -106,10 +93,24 @@ function MainMenu.new(uiService: Types.UIService?): Types.Screen
 		print("Settings clicked")
 	end)
 
-	quitButton.MouseButton1Click:Connect(function()
-		-- TODO: Implement quit functionality
-		print("Quit clicked")
-	end)
+	-- Comment out the quit button creation and its event connection
+	-- local quitButton = Instance.new("TextButton")
+	-- quitButton.Name = "QuitButton"
+	-- quitButton.Size = UDim2.new(0, 200, 0, 50)
+	-- quitButton.Position = UDim2.new(0.5, -100, 0.5, 140)
+	-- quitButton.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+	-- quitButton.Text = "Quit"
+	-- quitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	-- quitButton.TextSize = 24
+	-- quitButton.Font = Enum.Font.GothamMedium
+	-- quitButton.Parent = mainFrame
+
+	-- setupButtonHover(quitButton, Color3.fromRGB(180, 40, 40))
+
+	-- quitButton.MouseButton1Click:Connect(function()
+	-- 	-- TODO: Implement quit functionality
+	-- 	print("Quit clicked")
+	-- end)
 
 	return (self :: any) :: Types.Screen
 end

@@ -98,6 +98,7 @@ function UIService:_createTransitionTween(instance: GuiObject, transition: strin
 end
 
 function UIService:ShowScreen(name: string, transition: string?)
+	print(`Showing screen: {name}`)
 	local screen = self._screens[name]
 	if not screen then
 		warn(`Screen {name} not found`)
@@ -106,15 +107,18 @@ function UIService:ShowScreen(name: string, transition: string?)
 
 	-- Hide current screen if exists
 	if self._activeScreen then
+		print(`Hiding current screen: {self._activeScreen.Name}`)
 		self:HideScreen(self._activeScreen.Name, transition)
 	end
 
 	-- Enable the screen (no background transition)
 	screen.Instance.Enabled = true
 	self._activeScreen = screen
+	print(`Screen {name} is now visible`)
 end
 
 function UIService:HideScreen(name: string, transition: string?)
+	print(`Hiding screen: {name}`)
 	local screen = self._screens[name]
 	if not screen then
 		warn(`Screen {name} not found`)
@@ -127,6 +131,7 @@ function UIService:HideScreen(name: string, transition: string?)
 	if self._activeScreen == screen then
 		self._activeScreen = nil
 	end
+	print(`Screen {name} is now hidden`)
 end
 
 function UIService:ShowComponent(name: string)
