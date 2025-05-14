@@ -99,12 +99,31 @@ export type PlayerEconomy = {
 }
 
 export type MarketPrice = {
+	resourceId: string,
 	basePrice: number,
 	currentPrice: number,
-	lastUpdated: number,
-	priceHistory: { number },
 	supply: number,
 	demand: number,
+	lastUpdated: number,
+}
+
+export type MarketState = "normal" | "high_demand" | "low_supply"
+
+export type MarketTransactionType = "buy" | "sell"
+
+export type MarketTransaction = {
+	playerUserId: number,
+	resourceId: string,
+	amount: number,
+	price: number,
+	type: MarketTransactionType,
+	timestamp: number,
+}
+
+export type MarketHistoryEntry = {
+	resourceId: string,
+	price: number,
+	timestamp: number,
 }
 
 export type Resource = {
@@ -136,14 +155,38 @@ export type Facility = {
 	efficiency: number,
 }
 
-export type Bot = {
+export type DeliveryBotType = "basic" | "advanced" | "special"
+
+export type PathNode = {
+	position: Vector3,
+}
+
+export type Path = {
+	nodes: { PathNode },
+}
+
+export type DeliveryTask = {
 	id: string,
+	resourceId: string,
+	amount: number,
+	sourceFacilityId: string,
+	destinationFacilityId: string?,
+	destinationPosition: Vector3,
+	priority: number, -- 1=normal, 2=high, 3=urgent
+	status: "pending" | "in_progress" | "completed" | "failed",
+}
+
+export type DeliveryBot = {
+	id: string,
+	type: DeliveryBotType,
 	facilityId: string,
 	position: Vector3,
 	target: Vector3?,
 	carrying: { [string]: number },
 	speed: number,
-	state: "idle" | "moving" | "loading" | "unloading",
+	capacity: number,
+	state: "idle" | "moving" | "loading" | "unloading" | "returning" | "error",
+	path: Path?,
 }
 
 export type EconomyService = {
@@ -163,13 +206,14 @@ export type EconomyService = {
 
 export type MarketService = {
 	Init: (self: MarketService) -> (),
-	GetResourcePrice: (self: MarketService, resourceId: string) -> number?,
-	UpdateResourcePrice: (self: MarketService, resourceId: string, newPrice: number) -> (),
-	GetResourceSupply: (self: MarketService, resourceId: string) -> number?,
-	GetResourceDemand: (self: MarketService, resourceId: string) -> number?,
-	UpdateResourceSupply: (self: MarketService, resourceId: string, amount: number) -> (),
-	UpdateResourceDemand: (self: MarketService, resourceId: string, amount: number) -> (),
+	GetPrice: (self: MarketService, resourceId: string) -> MarketPrice,
+	GetPriceHistory: (self: MarketService, resourceId: string) -> { number }?,
+	UpdateMarket: (self: MarketService, resourceId: string) -> (),
+	Buy: (self: MarketService, playerUserId: number, resourceId: string, amount: number) -> (boolean, string),
+	Sell: (self: MarketService, playerUserId: number, resourceId: string, amount: number) -> (boolean, string),
+	GetAllResources: (self: MarketService) -> { Resource },
 	OnPriceUpdated: BindableEvent,
+	GetPlayerHistory: (self: MarketService, playerUserId: number) -> { MarketTransaction },
 }
 
 -- Business Types

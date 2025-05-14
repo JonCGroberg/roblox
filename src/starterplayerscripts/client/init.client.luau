@@ -20,6 +20,7 @@ local EconomyService = require(ReplicatedStorage.Services.EconomyService)
 local economyService = EconomyService.new() -- create an instance
 local BusinessService = require(ReplicatedStorage.Services.BusinessService)
 local FacilityUI = require(ReplicatedStorage.UI.FacilityUI)
+local DeliveryUI = require(ReplicatedStorage.UI.DeliveryUI)
 
 -- Screens
 local MainMenu = require(ReplicatedStorage.UI.Screens.MainMenu)
@@ -106,3 +107,6 @@ economyService.OnCurrencyUpdated.Event:Connect(function(player)
 end)
 
 economyService.OnCurrencyUpdated:Fire(player)
+
+-- Initialize DeliveryUI
+DeliveryUI:Init()

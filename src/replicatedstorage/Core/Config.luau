@@ -177,10 +177,54 @@ Config.RECIPES = {
 	},
 }
 
+-- Delivery Bot Configuration
+Config.DELIVERY = {
+	BUFFER_THRESHOLD = 0.8, -- Create delivery task when buffer is 80% full
+	DELIVERY_RATIO = 0.5, -- Deliver 50% of buffer contents
+	BOT_TYPES = {
+		basic = {
+			speed = 16,
+			capacity = 100,
+			cost = 1000,
+		},
+		advanced = {
+			speed = 24,
+			capacity = 200,
+			cost = 2500,
+		},
+		special = {
+			speed = 32,
+			capacity = 500,
+			cost = 5000,
+		},
+	},
+	QUEUE_PRIORITIES = {
+		normal = 1,
+		high = 2,
+		urgent = 3,
+	},
+}
+
+-- Business Upgrade Configuration
 Config.BUSINESS_UPGRADES = {
-	capacity = { cost = 500, maxLevel = 5 },
-	speed = { cost = 750, maxLevel = 3 },
-	efficiency = { cost = 1000, maxLevel = 4 },
+	capacity = {
+		baseCapacity = 1000,
+		capacityMultiplier = 0.5, -- Each level increases capacity by 50%
+		cost = 500,
+		maxLevel = 5,
+	},
+	speed = {
+		baseSpeed = 1,
+		speedMultiplier = 0.25, -- Each level increases speed by 25%
+		cost = 750,
+		maxLevel = 3,
+	},
+	efficiency = {
+		baseEfficiency = 1,
+		efficiencyMultiplier = 0.2, -- Each level increases efficiency by 20%
+		cost = 1000,
+		maxLevel = 4,
+	},
 }
 
 return Config
